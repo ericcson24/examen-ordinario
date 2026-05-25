@@ -33,6 +33,7 @@ export default function ComponentFilterGender({SetStatus}:StatusImport){
                     setCharacters(data.results)
                     setquesebusca("Male")
                     setTotalPages(data.info.pages)
+                    
                 }
                 if(busqueda==2){
                     const data= await SearchCharacterFilterGender("Male",page)
@@ -72,7 +73,7 @@ export default function ComponentFilterGender({SetStatus}:StatusImport){
 
             { characters && !loading && !error &&(<ul>
                 <div>
-                    <button onClick={()=>(setbusqueda(busqueda+1))}>{quesebusca}</button>
+                    <button onClick={()=>(setbusqueda(busqueda+1), setpaginator(1))}>{quesebusca}</button>
                 </div>
                 {characters.map((e)=><CharacterCard key={e.id} character={e}/>)}
 
