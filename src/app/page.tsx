@@ -20,6 +20,7 @@ export default function Home() {
   const [totalPages,setTotalPages]=useState<number>(0)
   const [busqueda, setbusqueda]=useState<string>("")
   const [filtroStatusClicked,setFiltroStatusClicked]=useState<boolean>(false)
+  const [filtroGenderClicked,setFiltroGenderClicked]=useState<boolean>(false)
 
   useEffect(()=>{
     
@@ -46,7 +47,7 @@ export default function Home() {
         <div><h1>Api Rick y Morti: </h1></div>
         <div>
           <p>Buscador:</p>
-          <input placeholder="Busca personaje" onKeyDown={e => { if (e.key === "Enter")(setbusqueda(busqueda))}}  onChange={(e)=>(setbusqueda(e.target.value),setFiltroStatusClicked(false))}></input>
+          <input placeholder="Busca personaje" onKeyDown={e => { if (e.key === "Enter")(setbusqueda(busqueda))}}  onChange={(e)=>(setbusqueda(e.target.value),setFiltroStatusClicked(false),setFiltroGenderClicked(false))}></input>
         </div>
         {loading && <p>Cargando...</p>}
         {error && <p>{error}</p>}
@@ -54,9 +55,14 @@ export default function Home() {
           
           <ComponentFilterStatus SetStatus={setFiltroStatusClicked}></ComponentFilterStatus>
         </ul>)}
-        {!filtroStatusClicked&&!loading && !error && characters && (
+        {filtroGenderClicked &&(<ul>
+          
+          <ComponentFilterStatus SetStatus={setFiltroGenderClicked}></ComponentFilterStatus>
+        </ul>)}
+        {!filtroStatusClicked&& !filtroGenderClicked&&!loading && !error && characters && (
         <ul className={styles.grid}>
-          <button onClick={()=>setFiltroStatusClicked(true)}>Filtro estado</button>
+          <button onClick={()=>setFiltroStatusClicked(true)}>Filtro status</button>
+          <button onClick={()=>setFiltroGenderClicked(true)}>Filtro gender</button>
 
         {characters.map((character)=>(<CharacterCard key={character.id} character={character}/>))}
           <Paginator

@@ -11,6 +11,15 @@ export type CharacterDetail = {
     name: string,
     image: string,
     episode:string[]
+    status: string,
+    gender: string
+    species:string,
+    origin: {
+        name:string
+    }
+    location:{
+        name:string
+    }
 }
 
 export type Response <T> = {

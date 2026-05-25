@@ -1,7 +1,9 @@
 "use client"
 
+import styles from "./paginator.module.css";
+
 import { Character } from "@/lib/types"
-import "./CharacterCard.css"
+
 import Link from "next/link"
 
 type Characterprops= {
@@ -11,10 +13,10 @@ type Characterprops= {
 export default function CharacterCard({character}:Characterprops){
 
     return(
-        <div className="character-card">
+        <div className={styles.card}>
             <Link href={`/character/${character.id}`}>
             <div>
-                <img className="imagen" src={character.image} alt={character.name} aria-placeholder="Imagen"></img>
+                <img className={styles.image} src={character.image} alt={character.name} aria-placeholder="Imagen"></img>
             </div>
             <div>
                 <h2>{character.name}</h2>
