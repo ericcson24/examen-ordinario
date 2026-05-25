@@ -3,6 +3,15 @@
   flex-direction: row;
   justify-content: center;
 }
-.button {
+
+.card {
+  display: flex;
+  justify-content: center;
+  margin: 15px;
   
 }
+
+.image {
+  max-width: 250px;
+}
+

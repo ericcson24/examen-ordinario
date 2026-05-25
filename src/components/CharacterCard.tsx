@@ -21,6 +21,12 @@ export default function CharacterCard({character}:Characterprops){
             <div>
                 <h2>{character.name}</h2>
             </div>
+            <div>
+                <p>{character.status}</p>
+            </div>
+            <div>
+                <p>{character.gender}</p>
+            </div>
             </Link>
 
             

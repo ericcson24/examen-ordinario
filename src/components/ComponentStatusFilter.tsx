@@ -1,7 +1,8 @@
 "use client"
 
+import styles from "./ComponentFilter.module.css";
 import { SearchCharacterFilterStatus } from "@/lib/api"
-import { Character, CharacterDetail, Episode } from "@/lib/types"
+import { Character, } from "@/lib/types"
 import { useEffect, useState } from "react"
 import CharacterCard from "./CharacterCard"
 import Paginator from "./Paginator"
@@ -28,19 +29,19 @@ export default function ComponentFilterStatus({SetStatus}:StatusImport){
             SetStatus(true)
             try{
                 if(busqueda==1){
-                    const data= await SearchCharacterFilterStatus("dead",1)
+                    const data= await SearchCharacterFilterStatus("dead",page)
                     setCharacters(data.results)
                     setquesebusca("Alive")
                     setTotalPages(data.info.pages)
                 }
                 if(busqueda==2){
-                    const data= await SearchCharacterFilterStatus("Alive",1)
+                    const data= await SearchCharacterFilterStatus("Alive",page)
                     setCharacters(data.results)
                     setquesebusca("unknown")
                     setTotalPages(data.info.pages)
                 }
                 if(busqueda==3){
-                    const data= await SearchCharacterFilterStatus("unknown",1)
+                    const data= await SearchCharacterFilterStatus("unknown",page)
                     setCharacters(data.results)
                     setquesebusca("dead")
                     setTotalPages(data.info.pages)
@@ -58,7 +59,11 @@ export default function ComponentFilterStatus({SetStatus}:StatusImport){
  
 
     return(
-        <div>
+        <div className={styles.grid}>
+
+            {!characters && <h2>No hay personajes</h2>}
+            {loading && <p>Cargando...</p>}
+            {error && <p>{error}</p>}
 
             { characters && !loading && !error &&(<ul>
                 <div>

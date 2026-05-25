@@ -9,6 +9,7 @@ import { GetAllCharacters, SearchCharacter } from "@/lib/api";
 import Paginator from "@/components/Paginator";
 import CharacterCard from "@/components/CharacterCard";
 import ComponentFilterStatus from "@/components/ComponentStatusFilter";
+import ComponentFilterGender from "@/components/ComponentgGenderFilter";
 
 export default function Home() {
 
@@ -51,16 +52,17 @@ export default function Home() {
         </div>
         {loading && <p>Cargando...</p>}
         {error && <p>{error}</p>}
+        {!characters &&!loading&&!error&&(<ul><p>No hay personaje con estos parametros</p></ul>)}
         {filtroStatusClicked &&(<ul>
           
           <ComponentFilterStatus SetStatus={setFiltroStatusClicked}></ComponentFilterStatus>
         </ul>)}
         {filtroGenderClicked &&(<ul>
           
-          <ComponentFilterStatus SetStatus={setFiltroGenderClicked}></ComponentFilterStatus>
+          <ComponentFilterGender SetStatus={setFiltroGenderClicked}></ComponentFilterGender>
         </ul>)}
         {!filtroStatusClicked&& !filtroGenderClicked&&!loading && !error && characters && (
-        <ul className={styles.grid}>
+        <ul className={styles.Grid}>
           <button onClick={()=>setFiltroStatusClicked(true)}>Filtro status</button>
           <button onClick={()=>setFiltroGenderClicked(true)}>Filtro gender</button>
 
